@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "@sn8/themify-icons": "^1.0.0",
+    "ajaxchimp": "^1.3.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "jquery-nice-select": "^1.1.0",
+    "magnific-popup": "^1.1.0",
+    "owl.carousel": "^2.3.4",
+    "superfish": "^1.7.10"
+  }
+}
