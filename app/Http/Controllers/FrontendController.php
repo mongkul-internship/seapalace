@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Post;
+
 class FrontendController extends Controller
 {
     public function index()
@@ -17,7 +19,8 @@ class FrontendController extends Controller
 
     public function blog()
     {
-        return view('blog');
+        $users = Post::all();
+        return view('blog', compact('users'));
     }
 
     public function properties()

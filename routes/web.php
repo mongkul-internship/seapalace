@@ -21,3 +21,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('','UserController@getUser')->name('user-list');
     Route::get('{id}','UserController@getUserId')->name('user-id');
 });
+
+Route::get('post','PostController@post')->name('post-form');
+Route::post('store','PostController@store')->name('store');
