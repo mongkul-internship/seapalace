@@ -44,8 +44,10 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('properties') }}">Properties</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('create') }}">Create</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('show') }}">Show</a></li>
+                        <li class="nav-item"><a class="nav-link"  style="color: red;" href="{{ route('create') }}">Create</a></li>
+                        <li class="nav-item"><a class="nav-link"  style="color: red;" href="{{ route('show') }}">Show Create</a></li>
+                        <li class="nav-item"><a class="nav-link"  style="color: blue;" href="{{ route('index') }}">Category</a></li>
+                        <li class="nav-item"><a class="nav-link"  style="color: blue;" href="{{ route('category') }}">Show Category</a></li>
 
                     </ul>
                 </div>

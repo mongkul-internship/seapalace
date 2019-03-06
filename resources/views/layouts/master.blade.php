@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('node_modules/magnific-popup/dist/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/owl.carousel/dist/assets/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('node_modules/jquery-nice-select/css/nice-select.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('node_modules/jquery-nice-select/css/nice-select.css') }}">--}}
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -33,7 +33,7 @@
 <script src="{{ asset('node_modules/owl.carousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery.easing.1.3.js') }}"></script>
 <script src="{{ asset('node_modules/superfish/dist/js/superfish.min.js') }}"></script>
-<script src="{{ asset('node_modules/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+{{--<script src="{{ asset('node_modules/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>--}}
 <script src="{{ asset('node_modules/ajaxchimp/jquery.ajaxchimp.min.js') }}"></script>
 {{--<script src="vendors/mail-script.js"></script>--}}
 <script src="{{ asset('js/main.js') }}"></script>

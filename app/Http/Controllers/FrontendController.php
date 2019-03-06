@@ -18,6 +18,9 @@ class FrontendController extends Controller
     public function gallery(){
         return view('gallery');
     }
+    public function user(){
+        return view('user');
+    }
 
 
 }

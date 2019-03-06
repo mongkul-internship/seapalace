@@ -2,40 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\CategoryPost;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
-    public function create(){
-        return view('post.create');
+    public function create()
+    {
+        $users = User::get();
+        $categories = Category::get();
+        return view('post.create', compact('users', 'categories'));
     }
-    public function show(){
+
+    public function show()
+    {
         $posts = Post::orderBy('created_at', 'desc')->get();
 
         return view('show', compact('posts'));
     }
-    public function edit($id){
+
+    public function edit($id)
+    {
         $post = Post::findOrFail($id);
         return view('post.edit', compact('post'));
     }
-    public function delete($id){
+
+    public function delete($id)
+    {
         $post = Post::findOrFail($id);
 
         $post->delete();
 
-        return redirect( route('show'));
+        return redirect(route('show'));
     }
-    public function store(Request $request){
-        $newPost = new Post();
-        // assign value match instance (column)
-        $newPost->title = $request->title;
-        $newPost->description = $request->description;
-        $newPost->author = $request->author;
-        // call save() method
-        $newPost->save();
-        // return back() method
-        return back();
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        // create new post
+        $post = Post::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        // create any records in category_post table by following categories passed from user [1, 2, 3]
+        $categories = $request->categories;
+
+        foreach ($categories as $category) {
+            CategoryPost::create([
+                'post_id' => $post->id,
+                'category_id' => $category
+            ]);
+        }
     }
 
     public function update(Request $request)
@@ -49,9 +72,9 @@ class CrudController extends Controller
 
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->author = $request->author;
+        $post->user_id = $request->author;
         $post->update();
 
-        return redirect('show');
+        return redirect(route('show'));
     }
 }
