@@ -36,6 +36,7 @@
     "help": "^3.0.2",
     "magnific-popup": "^1.1.0",
     "owl-carousel": "^1.0.0",
-    "superfish": "^1.7.10"
+    "superfish": "^1.7.10",
+    "yarm": "^0.4.0"
   }
 }

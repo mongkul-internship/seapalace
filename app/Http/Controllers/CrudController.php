@@ -22,13 +22,24 @@ class CrudController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->get();
 
-        return view('show', compact('posts'));
+        return view('post.show', compact('posts'));
+    }
+
+    public function detail($id)
+    {
+        $post = Post::findOrFail($id);
+        $categoties = Category::all();
+
+        return view('post.detail', compact('post', 'categoties'));
     }
 
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.edit', compact('post'));
+        $categories = Category::all();
+        $users = User::get();
+
+        return view('post.edit', compact('post', 'categories', 'users'));
     }
 
     public function delete($id)
@@ -42,13 +53,24 @@ class CrudController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        // create new post
-        $post = Post::create([
-            'user_id' => $request->user_id,
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
+        try {
+            DB::beginTransaction();
+            if (isset($request->id)) {
+                $post = Post::findOrFail($request->id);
+                if ($post instanceof Post) {
+                    $post->update($request->all());
+                }
+            } else {
+                $post = Post::create($request->all());
+            }
+            if ($post instanceof Post) {
+                $post->categories()->sync($request->categories);
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return $exception->getMessage();
+        }
 
         // create any records in category_post table by following categories passed from user [1, 2, 3]
         $categories = $request->categories;
@@ -59,22 +81,32 @@ class CrudController extends Controller
                 'category_id' => $category
             ]);
         }
-    }
-
-    public function update(Request $request)
-    {
-        $this->validate($request, [
-            'id' => 'required',
-            'title' => 'required',
-        ]);
-
-        $post = Post::findOrFail($request->id);
-
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->author;
-        $post->update();
-
-        return redirect(route('show'));
+        return back();
     }
 }
+
+//    public function update(Request $request)
+//    {
+//        $this->validate($request, [
+//            'id' => 'required',
+//            'title' => 'required',
+//        ]);
+//
+//        $post = Post::findOrFail($request->id);
+//
+//        $post->title = $request->title;
+//        $post->description = $request->description;
+//        $post->user_id = $request->user_id;
+//        $categories = $request->categories;
+//
+//        foreach ($categories as $category) {
+//            CategoryPost::create([
+//                'post_id' => $post->id,
+//                'category_id' => $category
+//            ]);
+//        }
+//
+//        $post->update();
+//
+//        return redirect(route('show'));
+//    }

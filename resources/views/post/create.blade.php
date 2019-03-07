@@ -23,51 +23,62 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <form method="POST" action="{{ 'store' }}">
-
-                    {{ csrf_field()  }}
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="form-group">
-                        <label>Title:</label>
-                        <input type="text" name="title" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Description:</label>
-                        <textarea rows="4" name="description" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>User</label>
-                        <select name="user_id" class="form-control">
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
                             @endforeach
-                        </select>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select name="categories[]" multiple class="form-control">
-                            @foreach($categories as $category)
+                @endif
+                @include('post.form')
+                {{--<form method="POST" action="{{ 'store' }}">--}}
 
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    {{--{{ csrf_field()  }}--}}
 
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--@if ($errors->any())--}}
+                        {{--<div class="alert alert-danger">--}}
+                            {{--<ul>--}}
+                                {{--@foreach ($errors->all() as $error)--}}
+                                    {{--<li>{{ $error }}</li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label>Title:</label>--}}
+                        {{--<input type="text" name="title" class="form-control"/>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label>Description:</label>--}}
+                        {{--<textarea rows="4" name="description" class="form-control"></textarea>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label>User</label>--}}
+                        {{--<select name="user_id" class="form-control">--}}
+                            {{--@foreach($users as $user)--}}
+                                {{--<option value="{{ $user->id }}">{{ $user->name }}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label>Category</label>--}}
+                        {{--<select name="categories[]" multiple class="form-control">--}}
+                            {{--@foreach($categories as $category)--}}
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Create New Post">
-                    </div>
+                                {{--<option value="{{ $category->id }}">{{ $category->name }}</option>--}}
 
-                </form>
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
+
+                    {{--<div class="form-group">--}}
+                        {{--<input type="submit" class="btn btn-primary" value="Create New Post">--}}
+                    {{--</div>--}}
+
+                {{--</form>--}}
+
             </div>
         </div>
     </div>

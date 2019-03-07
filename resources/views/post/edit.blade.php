@@ -23,40 +23,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <form method="POST" action="{{ route('update')  }}">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
 
-                    {{ csrf_field()  }}
-
-                    <input type="hidden" name="id" value="{{ $post->id }}"/>
-
-                    <div class="form-group">
-                        <label>Title:</label>
-                        <input type="text" name="title" class="form-control" value="{{ $post->title }}">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label>Author:</label>
-                        <input type="text" name="author" class="form-control" value="{{ $post->author }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Description:</label>
-                        <textarea rows="4" name="description" class="form-control">{{ $post->description }}</textarea>
-                    </div>
-
-
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Edit Post">
-                    </div>
-                </form>
+                @endif
+                @include('post.form')
             </div>
         </div>
     </div>

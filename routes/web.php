@@ -21,13 +21,14 @@ Route::prefix('post')->group(function () {
     Route::post('store', 'CrudController@store')->name('store');
     Route::post('update', 'CrudController@update')->name('update');
     Route::get('show', 'CrudController@show')->name('show');
+    Route::get('detail/{id}', 'CrudController@detail')->name('detail');
     Route::get('edit/{id}', 'CrudController@edit')->name('edit');
     Route::get('delete/{id}', 'CrudController@delete')->name('delete');
 //    Route::post('store_user', 'CrudController')->name('store_user');
 });
 Route::prefix('category')->group(function () {
     Route::get('','CategoryController@index')->name('index');
-    Route::post('store', 'CategoryController@store')->name('store');
+//    Route::post('store', 'CategoryController@store')->name('store');
 //    Route::post('update', 'CrudController@update')->name('update');
     Route::get('category', 'CategoryController@show')->name('category');
 //    Route::get('edit/{id}', 'CrudController@edit')->name('edit');

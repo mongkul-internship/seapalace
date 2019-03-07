@@ -25,13 +25,23 @@
         @if(isset($posts)&& count($posts)>0)
             @foreach($posts as $post)
                 <div class="row" style="padding: 5px">
-                    <div><h4 style="display: block;width: 100%">{{ $post->title }}<br></h4></div>
+                    <a href="{{ route('detail', $post->id) }}">
+                        <div><h4 style="display: block;width: 100%">{{ str_limit($post->title ,50) }}<br></h4></div>
+                        <div style="display: block;width: 100%">{{ str_limit($post->description,100,"(see more)")}} </div>
+                    </a>
 
-                    <div style="display: block;width: 100%">{{ $post->description }} </div>
                 </div>
                 <p style="display: inline; width: 100%">Author: <a href="#">{{ $post->user->name }}</a> | on {{ (\Carbon\Carbon::parse($post->created_at)->diffForHumans()) }}
                     <a href="{{ route('edit', $post->id)  }}">Edit</a> |
                     <a href="{{ route('delete', $post->id) }}">Delete</a>
+
+                    @if(count($post->categories) > 0)
+                        @foreach($post->categories as $category)
+                            <span>{{ $category->name }}, </span>
+                        @endforeach
+                    @else
+                        No category
+                    @endif
                 </p>
                 <hr>
             @endforeach

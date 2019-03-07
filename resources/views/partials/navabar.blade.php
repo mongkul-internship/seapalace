@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav">
                         <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('properties') }}">Properties</a></li>
+{{--                        <li class="nav-item"><a class="nav-link" href="{{ route('detail') }}">Properties</a></li>--}}
                         <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                         <li class="nav-item"><a class="nav-link"  style="color: red;" href="{{ route('create') }}">Create</a></li>
