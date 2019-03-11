@@ -14,22 +14,22 @@
                   class="form-control">@if(isset($post)){{ $post->description }}@endif</textarea>
     </div>
 
-    <div class="form-group">
-        <label>User</label>
-        <select name="user_id" class="form-control">
-            @foreach($users as $user)
-                @if(isset($post))
-                    @if($user->id == $post->user->id)
-                        <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
-                    @else
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endif
-                @else
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endif
-            @endforeach
-        </select>
-    </div>
+    {{--<div class="form-group">--}}
+        {{--<label>User</label>--}}
+        {{--<select name="user_id" class="form-control">--}}
+            {{--@foreach($users as $user)--}}
+                {{--@if(isset($post))--}}
+                    {{--@if($user->id == $post->user->id)--}}
+                        {{--<option value="{{ $user->id }}" selected>{{ $user->name }}</option>--}}
+                    {{--@else--}}
+                        {{--<option value="{{ $user->id }}">{{ $user->name }}</option>--}}
+                    {{--@endif--}}
+                {{--@else--}}
+                    {{--<option value="{{ $user->id }}">{{ $user->name }}</option>--}}
+                {{--@endif--}}
+            {{--@endforeach--}}
+        {{--</select>--}}
+    {{--</div>--}}
 
 
     <div class="form-group">

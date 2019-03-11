@@ -56,7 +56,7 @@ class CrudController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = auth()->user()->id;
+            $request['user_id'] = auth()->user()->id;
             if (isset($request->id)) {
                 $post = Post::findOrFail($request->id);
                 if ($post instanceof Post) {
@@ -83,7 +83,7 @@ class CrudController extends Controller
                 'category_id' => $category
             ]);
         }
-        return redirect()->route('/');
+        return redirect()->route('post');
     }
 }
 
