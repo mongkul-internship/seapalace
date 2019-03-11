@@ -48,7 +48,15 @@
                 <hr>
             @endforeach
         @endif
-
+            <div class="clearfix">
+                {{ $posts->links() }}
+                @if(($posts->lastPage() != $posts->currentPage()))
+                    <a class="btn btn-primary float-right" href="{{ $posts->nextPageUrl() }}">Older Posts &rarr;</a>
+                @endif
+                @if(!$posts->onFirstPage())
+                    <a class="btn btn-primary float-right" href="{{ $posts->previousPageUrl() }}">Previous Posts</a>
+                @endif
+            </div>
     </div>
 
     <!-- ================ welcome section end ================= -->
