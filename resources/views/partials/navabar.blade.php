@@ -3,23 +3,37 @@
         <div class="container">
             <div class="d-flex align-items-center">
                 <div id="logo">
-                    <a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
+                    <a href="index.html"><img src="img/Logo.png" alt="" title=""/></a>
                 </div>
                 <div class="ml-auto d-none d-md-block d-md-flex">
-                    <div class="media header-top-info">
-                        <span class="header-top-info__icon"><i class="fas fa-phone-volume"></i></span>
-                        <div class="media-body">
-                            <p>Have any question?</p>
-                            <p>Free: <a href="tel:+12 365 5233">+12 365 5233</a></p>
+                    @auth
+                        <div class="media header-top-info">
+                            <div class="media-body">
+                                <label for="Username"><button class="btn">{{ auth()->user()->name }}</button></buttom> </label>
+                            </div>
+                            <div class="media-body">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-primary" value="Logout">
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="media header-top-info">
-                        <span class="header-top-info__icon"><i class="ti-email"></i></span>
-                        <div class="media-body">
-                            <p>Have any question?</p>
-                            <p>Free: <a href="tel:+12 365 5233">+12 365 5233</a></p>
+                    @endauth
+                    @guest
+                        <div class="media header-top-info">
+                            <div class="media-body">
+                                <a href="{{ route('login') }}"> Login </a>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="media header-top-info">
+                            <div class="media-body">
+                                <a href="{{ route('register') }}">Register</a>
+
+                            </div>
+                        </div>
+
+                    @endguest
                 </div>
             </div>
         </div>
@@ -31,7 +45,8 @@
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <!-- <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a> -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -40,14 +55,13 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav">
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-{{--                        <li class="nav-item"><a class="nav-link" href="{{ route('detail') }}">Properties</a></li>--}}
-                        <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('create') }}">Create</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('post') }}">Show Post</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link"  style="color: red;" href="{{ route('create') }}">Create</a></li>
-                        <li class="nav-item"><a class="nav-link"  style="color: red;" href="{{ route('show') }}">Show Create</a></li>
-                        <li class="nav-item"><a class="nav-link"  style="color: blue;" href="{{ route('index') }}">Category</a></li>
-                        <li class="nav-item"><a class="nav-link"  style="color: blue;" href="{{ route('category') }}">Show Category</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
+
 
                     </ul>
                 </div>

@@ -31,10 +31,12 @@
                     </a>
 
                 </div>
-                <p style="display: inline; width: 100%">Author: <a href="#">{{ $post->user->name }}</a> | on {{ (\Carbon\Carbon::parse($post->created_at)->diffForHumans()) }}
-                    <a href="{{ route('edit', $post->id)  }}">Edit</a> |
-                    <a href="{{ route('delete', $post->id) }}">Delete</a>
-
+                <p style="display: inline; width: 100%">Author: <a href="#">{{ $post->user->name }}</a> |
+                    on {{ (\Carbon\Carbon::parse($post->created_at)->diffForHumans()) }}
+                    @auth @if(( $post->user->id == auth()->user()->id))
+                        <a href="{{ route('edit', $post->id)  }}">Edit</a> |
+                        <a href="{{ route('delete', $post->id) }}">Delete</a>
+                    @endauth   @endif
                     @if(count($post->categories) > 0)
                         @foreach($post->categories as $category)
                             <span>{{ $category->name }}, </span>

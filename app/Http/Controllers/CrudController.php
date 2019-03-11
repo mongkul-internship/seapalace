@@ -18,11 +18,12 @@ class CrudController extends Controller
         return view('post.create', compact('users', 'categories'));
     }
 
-    public function show()
+    public function post()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')
+            ->paginate(15);
 
-        return view('post.show', compact('posts'));
+        return view('post.show', compact( 'posts'));
     }
 
     public function detail($id)
@@ -48,13 +49,14 @@ class CrudController extends Controller
 
         $post->delete();
 
-        return redirect(route('show'));
+        return redirect(route('post'));
     }
 
     public function store(Request $request)
     {
         try {
             DB::beginTransaction();
+            $user = auth()->user()->id;
             if (isset($request->id)) {
                 $post = Post::findOrFail($request->id);
                 if ($post instanceof Post) {
@@ -81,7 +83,7 @@ class CrudController extends Controller
                 'category_id' => $category
             ]);
         }
-        return back();
+        return redirect()->route('/');
     }
 }
 
